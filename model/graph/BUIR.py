@@ -123,7 +123,7 @@ class LGCN_Encoder(nn.Module):
         v = x._values()
         i = i[:, dropout_mask]
         v = v[dropout_mask]
-        out = torch.sparse.FloatTensor(i, v, x.shape).cuda()
+        out = torch.sparse_coo_tensor(i, v, x.shape).cuda()
         return out * (1. / (1 - rate))
 
     def forward(self, inputs):

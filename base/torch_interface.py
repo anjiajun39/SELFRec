@@ -10,4 +10,4 @@ class TorchGraphInterface(object):
         coords = np.array([coo.row, coo.col])
         i = torch.LongTensor(coords)
         v = torch.from_numpy(coo.data).float()
-        return torch.sparse.FloatTensor(i, v, coo.shape)
+        return torch.sparse_coo_tensor(i, v, coo.shape)

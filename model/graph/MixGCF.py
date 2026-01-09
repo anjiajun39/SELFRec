@@ -90,7 +90,7 @@ class MixGCF_Encoder(nn.Module):
         v = x._values()
         i = i[:, dropout_mask]
         v = v[dropout_mask]
-        out = torch.sparse.FloatTensor(i, v, x.shape).to(x.device)
+        out = torch.sparse_coo_tensor(i, v, x.shape).to(x.device)
         return out * (1. / (1 - rate))
 
     def negative_mixup(self,user,pos_item,neg_item):
