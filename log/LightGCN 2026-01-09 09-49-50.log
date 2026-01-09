@@ -1,0 +1,14 @@
+2026-01-09 09:49:51,225 - LightGCN - INFO - ### model configuration ###
+2026-01-09 09:49:51,225 - LightGCN - INFO - training.set=./dataset/ai_tec/train.txt
+2026-01-09 09:49:51,225 - LightGCN - INFO - test.set=./dataset/ai_tec/test.txt
+2026-01-09 09:49:51,225 - LightGCN - INFO - model={'name': 'LightGCN', 'type': 'graph'}
+2026-01-09 09:49:51,225 - LightGCN - INFO - item.ranking.topN=[5, 10, 20]
+2026-01-09 09:49:51,225 - LightGCN - INFO - embedding.size=64
+2026-01-09 09:49:51,225 - LightGCN - INFO - max.epoch=500
+2026-01-09 09:49:51,225 - LightGCN - INFO - batch.size=2048
+2026-01-09 09:49:51,225 - LightGCN - INFO - learning.rate=0.001
+2026-01-09 09:49:51,225 - LightGCN - INFO - reg.lambda=0.0001
+2026-01-09 09:49:51,225 - LightGCN - INFO - LightGCN={'n_layer': 2}
+2026-01-09 09:49:51,225 - LightGCN - INFO - output=./results/
+2026-01-09 09:52:33,846 - LightGCN - INFO - ###Evaluation Results###
+2026-01-09 09:52:33,846 - LightGCN - INFO - ['Top 5\n', 'Hit Ratio:0.21007\n', 'Precision:0.13671\n', 'Recall:0.34588\n', 'NDCG:0.33921\n', 'Top 10\n', 'Hit Ratio:0.2457\n', 'Precision:0.07995\n', 'Recall:0.36656\n', 'NDCG:0.34327\n', 'Top 20\n', 'Hit Ratio:0.26986\n', 'Precision:0.0439\n', 'Recall:0.37947\n', 'NDCG:0.34637\n']

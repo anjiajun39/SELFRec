@@ -1,0 +1,14 @@
+2026-01-09 10:06:42,087 - DHCF - INFO - ### model configuration ###
+2026-01-09 10:06:42,087 - DHCF - INFO - training.set=./dataset/ai_tec/train.txt
+2026-01-09 10:06:42,087 - DHCF - INFO - test.set=./dataset/ai_tec/test.txt
+2026-01-09 10:06:42,087 - DHCF - INFO - model={'name': 'DHCF', 'type': 'graph'}
+2026-01-09 10:06:42,087 - DHCF - INFO - item.ranking.topN=[5, 10, 20]
+2026-01-09 10:06:42,087 - DHCF - INFO - embedding.size=64
+2026-01-09 10:06:42,087 - DHCF - INFO - max.epoch=5
+2026-01-09 10:06:42,087 - DHCF - INFO - batch.size=2048
+2026-01-09 10:06:42,087 - DHCF - INFO - learning.rate=0.001
+2026-01-09 10:06:42,087 - DHCF - INFO - reg.lambda=0.0001
+2026-01-09 10:06:42,087 - DHCF - INFO - DHCF={'n_layer': 2}
+2026-01-09 10:06:42,087 - DHCF - INFO - output=./results/
+2026-01-09 10:06:48,759 - DHCF - INFO - ###Evaluation Results###
+2026-01-09 10:06:48,759 - DHCF - INFO - ['Top 5\n', 'Hit Ratio:0.13534\n', 'Precision:0.08807\n', 'Recall:0.22009\n', 'NDCG:0.20668\n', 'Top 10\n', 'Hit Ratio:0.16871\n', 'Precision:0.0549\n', 'Recall:0.24953\n', 'NDCG:0.21511\n', 'Top 20\n', 'Hit Ratio:0.19533\n', 'Precision:0.03178\n', 'Recall:0.2756\n', 'NDCG:0.22198\n']

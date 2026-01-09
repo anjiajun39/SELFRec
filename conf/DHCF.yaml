@@ -1,0 +1,22 @@
+training.set: ./dataset/ai_tec/train.txt
+
+test.set: ./dataset/ai_tec/test.txt
+
+model:
+  name: DHCF
+  type: graph
+
+item.ranking.topN: [5,10,20]
+
+embedding.size: 64
+max.epoch: 500
+batch.size: 2048
+learning.rate: 0.001
+reg.lambda: 0.0001
+
+DHCF:
+  n_layer: 2
+  # You can add hypergraph specific params here if needed, e.g. weight for channels
+  # channel_weight: 0.5 
+
+output: ./results/
