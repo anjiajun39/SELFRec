@@ -1,0 +1,14 @@
+2026-01-09 12:48:00,643 - HCCF - INFO - ### model configuration ###
+2026-01-09 12:48:00,643 - HCCF - INFO - training.set=./dataset/ai_tec/train.txt
+2026-01-09 12:48:00,643 - HCCF - INFO - test.set=./dataset/ai_tec/test.txt
+2026-01-09 12:48:00,643 - HCCF - INFO - model={'name': 'HCCF', 'type': 'graph'}
+2026-01-09 12:48:00,643 - HCCF - INFO - item.ranking.topN=[5, 10, 20]
+2026-01-09 12:48:00,643 - HCCF - INFO - embedding.size=64
+2026-01-09 12:48:00,643 - HCCF - INFO - max.epoch=5
+2026-01-09 12:48:00,644 - HCCF - INFO - batch.size=2048
+2026-01-09 12:48:00,644 - HCCF - INFO - learning.rate=0.001
+2026-01-09 12:48:00,644 - HCCF - INFO - reg.lambda=0.0001
+2026-01-09 12:48:00,644 - HCCF - INFO - HCCF={'n_layer': 2, 'lambda': 0.1, 'drop_rate': 0.1, 'aug_type': 1, 'tau': 0.2}
+2026-01-09 12:48:00,644 - HCCF - INFO - output=./results/
+2026-01-09 12:48:09,736 - HCCF - INFO - ###Evaluation Results###
+2026-01-09 12:48:09,736 - HCCF - INFO - ['Top 5\n', 'Hit Ratio:0.01863\n', 'Precision:0.01213\n', 'Recall:0.0363\n', 'NDCG:0.02641\n', 'Top 10\n', 'Hit Ratio:0.02723\n', 'Precision:0.00886\n', 'Recall:0.04936\n', 'NDCG:0.03128\n', 'Top 20\n', 'Hit Ratio:0.0387\n', 'Precision:0.0063\n', 'Recall:0.06748\n', 'NDCG:0.03668\n']
