@@ -25,7 +25,8 @@ class FileIO(object):
             data = []
             with open(file) as f:
                 for line in f:
-                    items = split(' ', line.strip())
+                    # items = split(' ', line.strip())
+                    items = split('\t', line.strip())
                     user_id = items[0]
                     item_id = items[1]
                     weight = items[2]

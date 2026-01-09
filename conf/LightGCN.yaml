@@ -1,12 +1,12 @@
-training.set: ./dataset/yelp2018/train.txt
+training.set: ./dataset/ai_tec/train.txt
 
-test.set: ./dataset/yelp2018/test.txt
+test.set: ./dataset/ai_tec/test.txt
 
 model:
   name: LightGCN
   type: graph
 
-item.ranking.topN: [10,20]
+item.ranking.topN: [5,10,20]
 
 embedding.size: 64
 max.epoch: 500
