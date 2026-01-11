@@ -1,0 +1,30 @@
+model:
+  name: KGAT
+  type: graph
+
+training.set: ./dataset/ml-1m/train.txt
+test.set: ./dataset/ml-1m/test.txt
+
+KG:
+  kg_file: ./dataset/ml-1m/ml-1m.kg
+# training.set: ./dataset/ai_tec/train.txt
+# test.set: ./dataset/ai_tec/test.txt
+
+# KG:
+#   kg_file: ./dataset/ai_tec/ai_tec.kg
+
+item.ranking.topN: [5,10,20]
+embedding.size: 64
+max.epoch: 300
+batch.size: 4096
+learning.rate: 0.0001
+reg.lambda: 0.0001
+
+KGAT:
+  n_layer: 3
+  kg_lambda: 0.1
+  mess_dropout: 0.1
+  aggregator.type: bi-interaction # [gcn, graphsage, bi-interaction]
+  adj.type: softmax # [softmax, symmetric, random-walk]
+
+output: ./results/

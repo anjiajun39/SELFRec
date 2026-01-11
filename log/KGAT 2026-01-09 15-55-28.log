@@ -1,0 +1,15 @@
+2026-01-09 15:55:34,117 - KGAT - INFO - ### model configuration ###
+2026-01-09 15:55:34,117 - KGAT - INFO - model={'name': 'KGAT', 'type': 'graph'}
+2026-01-09 15:55:34,117 - KGAT - INFO - training.set=./dataset/ml-1m/train.txt
+2026-01-09 15:55:34,117 - KGAT - INFO - test.set=./dataset/ml-1m/test.txt
+2026-01-09 15:55:34,117 - KGAT - INFO - KG={'kg_file': './dataset/ml-1m/ml-1m.kg'}
+2026-01-09 15:55:34,117 - KGAT - INFO - item.ranking.topN=[5, 10, 20]
+2026-01-09 15:55:34,117 - KGAT - INFO - embedding.size=64
+2026-01-09 15:55:34,117 - KGAT - INFO - max.epoch=300
+2026-01-09 15:55:34,117 - KGAT - INFO - batch.size=4096
+2026-01-09 15:55:34,117 - KGAT - INFO - learning.rate=0.0001
+2026-01-09 15:55:34,117 - KGAT - INFO - reg.lambda=0.0001
+2026-01-09 15:55:34,117 - KGAT - INFO - KGAT={'n_layer': 3, 'kg_lambda': 0.1, 'mess_dropout': 0.1, 'aggregator.type': 'bi-interaction', 'adj.type': 'softmax'}
+2026-01-09 15:55:34,117 - KGAT - INFO - output=./results/
+2026-01-09 16:44:14,555 - KGAT - INFO - ###Evaluation Results###
+2026-01-09 16:44:14,555 - KGAT - INFO - ['Top 5\n', 'Hit Ratio:0.03299\n', 'Precision:0.2734\n', 'Recall:0.04168\n', 'NDCG:0.28678\n', 'Top 10\n', 'Hit Ratio:0.05737\n', 'Precision:0.23775\n', 'Recall:0.0722\n', 'NDCG:0.26067\n', 'Top 20\n', 'Hit Ratio:0.09695\n', 'Precision:0.2009\n', 'Recall:0.11917\n', 'NDCG:0.24108\n']
