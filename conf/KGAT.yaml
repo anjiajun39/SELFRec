@@ -1,30 +1,28 @@
+training.set: ./dataset/ai_tec/train.txt  # 训练集路径，每一行格式通常为: user_id item_id rating
+test.set: ./dataset/ai_tec/test.txt      # 测试集路径，每一行格式通常为: user_id item_id rating
+kg.data: ./dataset/ai_tec/ai_tec.kg      # 知识图谱数据路径，每一行格式为: head_id relation_id tail_id
+
 model:
-  name: KGAT
-  type: graph
+  name: KGAT                             # 模型名称
+  type: graph                            # 模型类型 (graph 表示基于图的模型)
 
-training.set: ./dataset/ml-1m/train.txt
-test.set: ./dataset/ml-1m/test.txt
+item.ranking.topN: [5,10,20]             # 评估指标的 Top-N 列表，即计算 Top-5, Top-10, Top-20 的结果
 
-KG:
-  kg_file: ./dataset/ml-1m/ml-1m.kg
-# training.set: ./dataset/ai_tec/train.txt
-# test.set: ./dataset/ai_tec/test.txt
-
-# KG:
-#   kg_file: ./dataset/ai_tec/ai_tec.kg
-
-item.ranking.topN: [5,10,20]
-embedding.size: 64
-max.epoch: 300
-batch.size: 4096
-learning.rate: 0.0001
-reg.lambda: 0.0001
+embedding.size: 64                       # 用户和物品的嵌入向量维度
+relation.size: 64                        # 关系(Relation)的嵌入向量维度
+max.epoch: 1000                           # 最大训练轮数
+batch.size: 2048                         # 默认批次大小 (如果模型区分 CF 和 KG batch，以此处为准或分别设置)
+learning.rate: 0.0001                     # 学习率
+reg.lambda: 1e-5                         # 正则化系数 (L2 Regularization)
 
 KGAT:
-  n_layer: 3
-  kg_lambda: 0.1
-  mess_dropout: 0.1
-  aggregator.type: bi-interaction # [gcn, graphsage, bi-interaction]
-  adj.type: softmax # [softmax, symmetric, random-walk]
+  n_layer: 3                             # GNN 聚合层数
+  kg_lambda: 1e-5                        # KG 任务损失在总损失中的权重
+  mess_dropout: [0.1, 0.1, 0.1]          # 每一层消息传递的 Dropout 概率列表
+  aggregator.type: bi-interaction        # 聚合器类型，可选项: [gcn, graphsage, bi-interaction]
+  adj.type: symmetric                      # 邻接矩阵归一化类型，可选项: [softmax, symmetric, random-walk]
+  use_pretrain: 0                        # 是否使用预训练的 Embedding 初始化 (0: 否, 1: 是)
+  kg_batch_size: 8192                    # 知识图谱训练任务的 Batch Size
+  cf_batch_size: 4096                    # 协同过滤训练任务的 Batch Size
 
-output: ./results/
+output: ./results/                       # 实验结果输出目录

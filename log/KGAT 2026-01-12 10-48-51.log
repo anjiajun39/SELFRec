@@ -1,0 +1,14 @@
+2026-01-12 10:49:20,584 - KGAT - INFO - ### model configuration ###
+2026-01-12 10:49:20,585 - KGAT - INFO - training.set=./dataset/ai_tec/train.txt
+2026-01-12 10:49:20,585 - KGAT - INFO - test.set=./dataset/ai_tec/test.txt
+2026-01-12 10:49:20,585 - KGAT - INFO - kg.data=./dataset/ai_tec/ai_tec.kg
+2026-01-12 10:49:20,585 - KGAT - INFO - model={'name': 'KGAT', 'type': 'graph'}
+2026-01-12 10:49:20,585 - KGAT - INFO - item.ranking.topN=[5, 10, 20]
+2026-01-12 10:49:20,585 - KGAT - INFO - embedding.size=64
+2026-01-12 10:49:20,585 - KGAT - INFO - relation.size=64
+2026-01-12 10:49:20,585 - KGAT - INFO - max.epoch=1000
+2026-01-12 10:49:20,585 - KGAT - INFO - batch.size=2048
+2026-01-12 10:49:20,585 - KGAT - INFO - learning.rate=0.001
+2026-01-12 10:49:20,585 - KGAT - INFO - reg.lambda=0.0001
+2026-01-12 10:49:20,585 - KGAT - INFO - KGAT={'n_layer': 3, 'kg_lambda': '1e-5', 'mess_dropout': [0.1, 0.1, 0.1], 'aggregator.type': 'bi-interaction', 'adj.type': 'softmax', 'use_pretrain': 0, 'kg_batch_size': 4096, 'cf_batch_size': 2048}
+2026-01-12 10:49:20,585 - KGAT - INFO - output=./results/
