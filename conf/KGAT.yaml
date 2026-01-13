@@ -1,6 +1,6 @@
-training.set: ./dataset/ai_tec/train.txt  # 训练集路径，每一行格式通常为: user_id item_id rating
-test.set: ./dataset/ai_tec/test.txt      # 测试集路径，每一行格式通常为: user_id item_id rating
-kg.data: ./dataset/ai_tec/ai_tec.kg      # 知识图谱数据路径，每一行格式为: head_id relation_id tail_id
+training.set: ./dataset/ai_tec_new/train.txt  # 训练集路径，每一行格式通常为: user_id item_id rating
+test.set: ./dataset/ai_tec_new/test.txt      # 测试集路径，每一行格式通常为: user_id item_id rating
+kg.data: ./dataset/ai_tec_new/ai_tec_new.kg      # 知识图谱数据路径，每一行格式为: head_id relation_id tail_id
 
 model:
   name: KGAT                             # 模型名称
@@ -10,9 +10,9 @@ item.ranking.topN: [5,10,20]             # 评估指标的 Top-N 列表，即计
 
 embedding.size: 64                       # 用户和物品的嵌入向量维度
 relation.size: 64                        # 关系(Relation)的嵌入向量维度
-max.epoch: 1000                           # 最大训练轮数
+max.epoch: 5000                           # 最大训练轮数
 batch.size: 2048                         # 默认批次大小 (如果模型区分 CF 和 KG batch，以此处为准或分别设置)
-learning.rate: 0.0001                     # 学习率
+learning.rate: 0.001                     # 学习率
 reg.lambda: 1e-5                         # 正则化系数 (L2 Regularization)
 
 KGAT:
@@ -20,9 +20,10 @@ KGAT:
   kg_lambda: 1e-5                        # KG 任务损失在总损失中的权重
   mess_dropout: [0.1, 0.1, 0.1]          # 每一层消息传递的 Dropout 概率列表
   aggregator.type: bi-interaction        # 聚合器类型，可选项: [gcn, graphsage, bi-interaction]
-  adj.type: symmetric                      # 邻接矩阵归一化类型，可选项: [softmax, symmetric, random-walk]
+  adj.type: symmetric                      # 邻接矩阵归一化类型，可选项: [symmetric, random-walk]
   use_pretrain: 0                        # 是否使用预训练的 Embedding 初始化 (0: 否, 1: 是)
   kg_batch_size: 8192                    # 知识图谱训练任务的 Batch Size
   cf_batch_size: 4096                    # 协同过滤训练任务的 Batch Size
+  resume: '/root/autodl-tmp/SELFRec/results/KGAT1_ai_tec_new_checkpoints/last.pth' # ./results/KGAT_checkpoints/last.pth
 
 output: ./results/                       # 实验结果输出目录

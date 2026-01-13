@@ -180,8 +180,6 @@ class KGDataLoader:
             norm_lap_func = symmetric_norm_lap
         elif self.laplacian_type == 'random-walk':
             norm_lap_func = random_walk_norm_lap
-        elif self.laplacian_type == 'softmax':
-            norm_lap_func = symmetric_norm_lap
         else:
             raise NotImplementedError
 

@@ -1,0 +1,14 @@
+2026-01-12 16:58:24,298 - PRec - INFO - ### model configuration ###
+2026-01-12 16:58:24,298 - PRec - INFO - training.set=./dataset/ai_tec_new/train.txt
+2026-01-12 16:58:24,298 - PRec - INFO - test.set=./dataset/ai_tec_new/test.txt
+2026-01-12 16:58:24,298 - PRec - INFO - model={'name': 'PRec', 'type': 'graph'}
+2026-01-12 16:58:24,298 - PRec - INFO - item.ranking.topN=[5, 10, 20]
+2026-01-12 16:58:24,298 - PRec - INFO - embedding.size=64
+2026-01-12 16:58:24,298 - PRec - INFO - max.epoch=1000
+2026-01-12 16:58:24,298 - PRec - INFO - batch.size=2048
+2026-01-12 16:58:24,298 - PRec - INFO - learning.rate=0.0001
+2026-01-12 16:58:24,298 - PRec - INFO - reg.lambda=0.0001
+2026-01-12 16:58:24,298 - PRec - INFO - PRec={'n_layer': 2, 'hyper_dim': 64, 'p': 0.2, 'drop_rate': 0.1, 'early_stopping': 50}
+2026-01-12 16:58:24,298 - PRec - INFO - output=./results/
+2026-01-12 17:03:20,883 - PRec - INFO - ###Evaluation Results###
+2026-01-12 17:03:20,883 - PRec - INFO - ['Top 5\n', 'Hit Ratio:0.17506\n', 'Precision:0.11392\n', 'Recall:0.30352\n', 'NDCG:0.29635\n', 'Top 10\n', 'Hit Ratio:0.207\n', 'Precision:0.06736\n', 'Recall:0.32905\n', 'NDCG:0.30402\n', 'Top 20\n', 'Hit Ratio:0.22604\n', 'Precision:0.03678\n', 'Recall:0.34371\n', 'NDCG:0.30816\n']

@@ -12,3 +12,5 @@
 2026-01-12 10:49:20,585 - KGAT - INFO - reg.lambda=0.0001
 2026-01-12 10:49:20,585 - KGAT - INFO - KGAT={'n_layer': 3, 'kg_lambda': '1e-5', 'mess_dropout': [0.1, 0.1, 0.1], 'aggregator.type': 'bi-interaction', 'adj.type': 'softmax', 'use_pretrain': 0, 'kg_batch_size': 4096, 'cf_batch_size': 2048}
 2026-01-12 10:49:20,585 - KGAT - INFO - output=./results/
+2026-01-12 14:35:32,551 - KGAT - INFO - ###Evaluation Results###
+2026-01-12 14:35:32,551 - KGAT - INFO - ['Top 5\n', 'Hit Ratio:0.14312\n', 'Precision:0.09314\n', 'Recall:0.25494\n', 'NDCG:0.23879\n', 'Top 10\n', 'Hit Ratio:0.17977\n', 'Precision:0.05849\n', 'Recall:0.2894\n', 'NDCG:0.24965\n', 'Top 20\n', 'Hit Ratio:0.21171\n', 'Precision:0.03444\n', 'Recall:0.32134\n', 'NDCG:0.25886\n']

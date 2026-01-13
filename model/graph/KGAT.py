@@ -1,3 +1,4 @@
+import os
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -32,11 +33,84 @@ class KGAT(GraphRecommender):
 
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
+        dataset_name = os.path.basename(os.path.dirname(self.config['training.set']))
+        self.checkpoint_dir = os.path.join(self.output, f"{self.model_name}_{dataset_name}_checkpoints")
+        self.start_epoch = 0
+        self._resume_checkpoint = None
+
+        if self.config.contain('KGAT') and 'resume' in self.config['KGAT']:
+            resume_path = self.config['KGAT']['resume']
+            if resume_path and os.path.exists(resume_path):
+                try:
+                    checkpoint = torch.load(resume_path, map_location=self.device, weights_only=False)
+                except TypeError:
+                    checkpoint = torch.load(resume_path, map_location=self.device)
+                self._resume_checkpoint = checkpoint
+                self.model.load_state_dict(checkpoint['model_state_dict'])
+                self.start_epoch = int(checkpoint.get('epoch', 0))
+                if 'bestPerformance' in checkpoint:
+                    self.bestPerformance = checkpoint['bestPerformance']
+                if 'best_user_emb' in checkpoint and 'best_item_emb' in checkpoint:
+                    self.best_user_emb = checkpoint['best_user_emb']
+                    self.best_item_emb = checkpoint['best_item_emb']
+                print(f"Resume KGAT from checkpoint: {resume_path}, start_epoch = {self.start_epoch}")
+
+    def _save_checkpoint(self, model, optimizer, epoch, path):
+        os.makedirs(self.checkpoint_dir, exist_ok=True)
+        payload = {
+            'model_state_dict': model.state_dict(),
+            'optimizer_state_dict': optimizer.state_dict(),
+            'epoch': int(epoch),
+            'bestPerformance': self.bestPerformance,
+        }
+        if hasattr(self, 'best_user_emb') and hasattr(self, 'best_item_emb'):
+            payload['best_user_emb'] = self.best_user_emb
+            payload['best_item_emb'] = self.best_item_emb
+
+        try:
+            payload['torch_rng_state'] = torch.get_rng_state()
+            if torch.cuda.is_available():
+                payload['cuda_rng_state_all'] = torch.cuda.get_rng_state_all()
+        except Exception:
+            pass
+
+        try:
+            payload['numpy_rng_state'] = np.random.get_state()
+        except Exception:
+            pass
+
+        try:
+            payload['python_rng_state'] = random.getstate()
+        except Exception:
+            pass
+
+        torch.save(payload, path)
+
     def train(self):
         model = self.model.to(self.device)
         optimizer = torch.optim.Adam(model.parameters(), lr=self.lRate)
+
+        if self._resume_checkpoint is not None and 'optimizer_state_dict' in self._resume_checkpoint:
+            optimizer.load_state_dict(self._resume_checkpoint['optimizer_state_dict'])
+            try:
+                if 'torch_rng_state' in self._resume_checkpoint:
+                    torch.set_rng_state(self._resume_checkpoint['torch_rng_state'])
+                if torch.cuda.is_available() and 'cuda_rng_state_all' in self._resume_checkpoint:
+                    torch.cuda.set_rng_state_all(self._resume_checkpoint['cuda_rng_state_all'])
+            except Exception:
+                pass
+            try:
+                if 'numpy_rng_state' in self._resume_checkpoint:
+                    np.random.set_state(self._resume_checkpoint['numpy_rng_state'])
+            except Exception:
+                pass
+            try:
+                if 'python_rng_state' in self._resume_checkpoint:
+                    random.setstate(self._resume_checkpoint['python_rng_state'])
+            except Exception:
+                pass
         
-        for epoch in range(self.maxEpoch):
+        for epoch in range(self.start_epoch, self.maxEpoch):
             # CF Training
             cf_total_loss = 0
             for n, batch in enumerate(next_batch_pairwise(self.data, self.batch_size)):
@@ -91,12 +165,26 @@ class KGAT(GraphRecommender):
             
             if epoch % 5 == 0:
                 self.fast_evaluation(epoch)
+
+            checkpoint_path = os.path.join(self.checkpoint_dir, "last.pth")
+            self._save_checkpoint(model, optimizer, epoch + 1, checkpoint_path)
         
         self.user_emb, self.item_emb = self.best_user_emb, self.best_item_emb
 
     def save(self):
         with torch.no_grad():
             self.best_user_emb, self.best_item_emb = self.model.predict_embedding()
+        best_model_path = os.path.join(self.checkpoint_dir, "best_model.pth")
+        os.makedirs(self.checkpoint_dir, exist_ok=True)
+        best_epoch = self.bestPerformance[0] if self.bestPerformance else 0
+        torch.save(
+            {
+                'model_state_dict': self.model.state_dict(),
+                'epoch': int(best_epoch),
+                'bestPerformance': self.bestPerformance,
+            },
+            best_model_path
+        )
 
     def predict(self, u):
         u = self.data.get_user_id(u)
