@@ -1,0 +1,16 @@
+2026-01-13 14:59:49,116 - KGRec - INFO - ### model configuration ###
+2026-01-13 14:59:49,116 - KGRec - INFO - training.set=./dataset/ai_tec_new/train.txt
+2026-01-13 14:59:49,116 - KGRec - INFO - test.set=./dataset/ai_tec_new/test.txt
+2026-01-13 14:59:49,116 - KGRec - INFO - kg.data=./dataset/ai_tec_new/ai_tec_new.kg
+2026-01-13 14:59:49,116 - KGRec - INFO - model={'name': 'KGRec', 'type': 'graph'}
+2026-01-13 14:59:49,116 - KGRec - INFO - item.ranking.topN=[5, 10, 20]
+2026-01-13 14:59:49,116 - KGRec - INFO - embedding.size=128
+2026-01-13 14:59:49,116 - KGRec - INFO - max.epoch=2000
+2026-01-13 14:59:49,116 - KGRec - INFO - batch.size=8192
+2026-01-13 14:59:49,116 - KGRec - INFO - learning.rate=0.001
+2026-01-13 14:59:49,116 - KGRec - INFO - reg.lambda=0.0001
+2026-01-13 14:59:49,116 - KGRec - INFO - KGRec={'context_hops': 2, 'node_dropout_rate': 0.5, 'mess_dropout_rate': 0.1, 'cl_coef': 0.01, 'cl_tau': 0.5, 'cl_drop_ratio': 0.5, 'mae_coef': 0.1, 'mae_msize': 256, 'resume': ''}
+2026-01-13 14:59:49,116 - KGRec - INFO - output=./results/
+2026-01-13 14:59:49,116 - KGRec - INFO - KGAT={'adj.type': 'random-walk'}
+2026-01-13 15:50:22,330 - KGRec - INFO - ###Evaluation Results###
+2026-01-13 15:50:22,330 - KGRec - INFO - ['Top 5\n', 'Hit Ratio:0.207\n', 'Precision:0.13471\n', 'Recall:0.35028\n', 'NDCG:0.33857\n', 'Top 10\n', 'Hit Ratio:0.25\n', 'Precision:0.08135\n', 'Recall:0.37924\n', 'NDCG:0.34653\n', 'Top 20\n', 'Hit Ratio:0.29115\n', 'Precision:0.04737\n', 'Recall:0.40471\n', 'NDCG:0.35394\n']

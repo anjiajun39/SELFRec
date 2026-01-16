@@ -24,6 +24,6 @@ KGAT:
   use_pretrain: 0                        # 是否使用预训练的 Embedding 初始化 (0: 否, 1: 是)
   kg_batch_size: 8192                    # 知识图谱训练任务的 Batch Size
   cf_batch_size: 4096                    # 协同过滤训练任务的 Batch Size
-  resume: '/root/autodl-tmp/SELFRec/results/KGAT1_ai_tec_new_checkpoints/last.pth' # ./results/KGAT_checkpoints/last.pth
+  resume: '' # ./results/KGAT_checkpoints/last.pth
 
 output: ./results/                       # 实验结果输出目录

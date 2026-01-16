@@ -1,0 +1,31 @@
+training.set: ./dataset/ai_tec_new/train.txt
+test.set: ./dataset/ai_tec_new/test.txt
+kg.data: ./dataset/ai_tec_new/ai_tec_new.kg
+
+model:
+  name: KGRec
+  type: graph
+
+item.ranking.topN: [5, 10,20]
+
+embedding.size: 128
+max.epoch: 3000
+batch.size: 8192
+learning.rate: 0.001
+reg.lambda: 0.0001
+
+KGRec:
+  context_hops: 2
+  node_dropout_rate: 0.5
+  mess_dropout_rate: 0.1
+  cl_coef: 0.01
+  cl_tau: 0.5
+  cl_drop_ratio: 0.5
+  mae_coef: 0.1
+  mae_msize: 256
+  resume: '/root/autodl-tmp/SELFRec/results/KGRec_ai_tec_new_checkpoints_2000/last.pth' # ./results/KGAT_checkpoints/last.pth
+
+output: ./results/
+
+KGAT:
+  adj.type: random-walk
